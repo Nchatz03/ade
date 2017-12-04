@@ -7,8 +7,18 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ * @author NXATZ
+ *
+ */
 public class InputMethods {
 
+	/**Retrieve the number of BMP files in the specified folder
+	 * 
+	 * @param path image folder path
+	 * 
+	 * @return the number of BMP files
+	 */
 	public static int getNumofImages(String path) {
 
 		int Num = 0;
@@ -25,9 +35,16 @@ public class InputMethods {
 
 	}
 
+	/**Retrieve the table with flight's data BMP title,latitude and longitude coordinates 
+	 * 
+	 * @param path path to flight data log file
+	 * @param num number of images taken from drone
+	 * 
+	 * @return The table with flight data 
+	 */
 	public static String[][] dataLogInput(String path, int num) {
 
-		// this is the filename of .txt file (static path)
+		// this is the filename of text file (static path)
 		String fileName = path;
 
 		String[][] flightBlackBox = new String[num][3];
@@ -81,6 +98,12 @@ public class InputMethods {
 
 	}
 
+	/**reader used as driver for Image data
+	 * 
+	 * @param path file path
+	 * 
+	 * @throws IOException file IO exception
+	 */
 	public static void readImageDataexp(String path) throws IOException {
 
 		FileInputStream file = new FileInputStream(path);
@@ -130,6 +153,14 @@ public class InputMethods {
 		return;
 	}
 
+	
+	/**Converts bytes array to string 
+	 * 
+	 * @param data byte array reader 
+	 * @param len array length
+	 * 
+	 * @return the converted string
+	 */
 	public static String convertByte2String(byte[] data, int len) {
 
 		String convertion = null;
@@ -149,6 +180,14 @@ public class InputMethods {
 		return convertion;
 	}
 
+	/**Reversion of the string 
+	 * 
+	 * @param data String with data
+	 * 
+	 * @param len length of string
+	 * 
+	 * @return the converted string
+	 */
 	public static String reverseString(String data, int len) {
 
 		String[] temp;
@@ -178,16 +217,30 @@ public class InputMethods {
 
 	}
 
-	public static int convertHEX2DEC(String temp2) {
+	/**Convert hexadecimal string to decimal string
+	 * 
+	 * @param hexstring the hex String
+	 * 
+	 * @return the converted decimal string
+	 */
+	public static int convertHEX2DEC(String hexstring) {
 
 		int convertion = 0;
-	    convertion = Integer.parseUnsignedInt(temp2,16);
+	    convertion = Integer.parseUnsignedInt(hexstring,16);
         
 	    System.out.println(convertion);
 		return convertion;
 
 	}
 
+	/**Image data reader
+	 * 
+	 * @param path file path
+	 * 
+	 * @return returns the image object
+	 * 
+	 * @throws IOException File IO exception
+	 */
 	public static ImgRGB24 readImageData(String path) throws IOException {
 
 		FileInputStream file = new FileInputStream(path);
@@ -337,6 +390,12 @@ public class InputMethods {
 
 	}
 
+	/**Main method for test drivers
+	 * 
+	 * @param args command line argument
+	 * 
+	 * @throws IOException File IO exception
+	 */
 	public static void main(String args[]) throws IOException {
 
 		int numofIMG = getNumofImages("./images");
@@ -349,9 +408,9 @@ public class InputMethods {
 			for (int j = 0; j < 3; j++)
 				System.out.println(flightBlackBox[i][j]);
 
-		ImgRGB24 image = new ImgRGB24();
+		//ImgRGB24 image = new ImgRGB24();
 
-		image = readImageData("./images/DJI_0707.txt");
+		//image = readImageData("./images/DJI_0707.txt");
 		//readImageDataexp("./images/DJI_0707.txt");
 
 		//String temp1 = image.getHeight();

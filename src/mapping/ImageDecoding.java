@@ -1,13 +1,18 @@
 package mapping;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import javax.imageio.ImageIO;
 
+/**
+ * @author NXATZ
+ *
+ */
 public class ImageDecoding {
 
+	/**Convert BMP files to text files
+	 * 
+	 * @param path file path 
+	 */
 	public static void getTXTfromBMP(String path){
 		
 		
@@ -34,6 +39,10 @@ public class ImageDecoding {
 		
 	}
 	
+	/**Converts text files to BMP files
+	 * 
+	 * @param path file path
+	 */
 	public static void getBMPfromTXT(String path){
 		
 		
@@ -60,6 +69,12 @@ public class ImageDecoding {
 		
 	}
 
+	/**Main method for method test files 
+	 * 
+	 * @param args command line arguments
+	 * 
+	 * @throws IOException for file IO
+	 */
 	public static void main(String args[]) throws IOException {
 
 		getTXTfromBMP("./images/DJI_0707.bmp");
