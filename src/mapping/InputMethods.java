@@ -121,13 +121,12 @@ public class InputMethods {
 
 			len = file.read(pixeldata);
 			for (int j = 0; j < len; j = j + 3) {
-				// System.out.printf("#%02X%02X%02X
-				// ",pixeldata[j],pixeldata[j+1],pixeldata[j+2]);
-				break;
+				System.out.printf("#%02X%02X%02X", pixeldata[j], pixeldata[j + 1], pixeldata[j + 2]);
 			}
 			System.out.println("interation : " + i++);
 		} while (len != -1);
 
+		file.close();
 		return;
 	}
 
@@ -136,21 +135,60 @@ public class InputMethods {
 		String convertion = null;
 
 		if (len == 2) {
-			convertion = String.format("%02X%02X", data[0], data[1]);
+			convertion = String.format("%02X %02X", data[0], data[1]);
 		}
 
 		if (len == 3) {
-			convertion = String.format("%02X%02X%02X", data[0], data[1], data[2]);
+			convertion = String.format("%02X %02X %02X", data[0], data[1], data[2]);
 		}
 
 		if (len == 4) {
-			convertion = String.format("%02X%02X%02X%02X", data[0], data[1], data[2], data[3]);
+			convertion = String.format("%02X %02X %02X %02X", data[0], data[1], data[2], data[3]);
 		}
 
 		return convertion;
 	}
 
-	public static void readImageData(String path) throws IOException {
+	public static String reverseString(String data, int len) {
+
+		String[] temp;
+		String convertion = null;
+		temp = data.split(" ");
+
+		if (len == 2) {
+
+			convertion = temp[1] + temp[0];
+
+		}
+
+		if (len == 3) {
+
+			convertion= temp[2] + temp[1] + temp[0];
+
+		}
+
+		if (len == 4) {
+
+			convertion = temp[3]+temp[2]+temp[1]+temp[0];
+
+		}
+
+		System.out.println(convertion);
+		return convertion;
+
+	}
+
+	public static int convertHEX2DEC(String temp2) {
+
+		int convertion = 0;
+	    convertion = Integer.parseUnsignedInt(temp2,16);
+        
+	    System.out.println(convertion);
+		return convertion;
+
+	}
+
+	public static ImgRGB24 readImageData(String path) throws IOException {
 
 		FileInputStream file = new FileInputStream(path);
 
@@ -283,17 +321,19 @@ public class InputMethods {
 				column--;
 
 			}
-			
+
 			row++;
-			
+
 			System.out.println(row);
-			if ( row == 4000)
+			if (row == 4000)
 				break;
-			
+
 		} while (len != -1);
-		
+
 		image.modifyBMPDATA(tempimage);
-		
+
+		file.close();
+		return image;
 
 	}
 
@@ -309,7 +349,14 @@ public class InputMethods {
 			for (int j = 0; j < 3; j++)
 				System.out.println(flightBlackBox[i][j]);
 
-		readImageData("./images/DJI_0707.txt");
+		ImgRGB24 image = new ImgRGB24();
 
+		image = readImageData("./images/DJI_0707.txt");
+		//readImageDataexp("./images/DJI_0707.txt");
+
+		//String temp1 = image.getHeight();
+		//String temp2 = reverseString(temp1,4);
+		//int i = convertHEX2DEC(temp2);
+		
 	}
 }
