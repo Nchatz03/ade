@@ -1,0 +1,9 @@
+MAPALGORYTHM TESTER:
+
+java MapAlgorythm ./ClassTesting -D
+
+PHASE 1.1 TESTER :
+
+java MapAlgorythm ./tester/PHASE1_1/Exception -P
+java MapAlgorythm ./tester/PHASE1_1/Succeed -P 
+java MapAlgorythm ./tester/PHASE1_1/Failed -P
