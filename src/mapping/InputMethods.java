@@ -13,34 +13,50 @@ import java.io.IOException;
  */
 public class InputMethods {
 
-	/**Retrieve the number of BMP files in the specified folder
+	/**
+	 * Retrieve the number of BMP files in the specified folder
 	 * 
-	 * @param path image folder path
+	 * @param path
+	 *            image folder path
 	 * 
 	 * @return the number of BMP files
 	 */
 	public static int getNumofImages(String path) {
 
 		int Num = 0;
-		File folder = new File(path);
-		String[] fileNames = folder.list();
 
-		for (int i = 0; i < fileNames.length; i++) {
-			if (fileNames[i].contains(".bmp")) {
-				Num++;
+		try {
+
+			File folder = new File(path);
+			String[] fileNames = folder.list();
+
+			for (int i = 0; i < fileNames.length; i++) {
+				if (fileNames[i].contains(".bmp")) {
+					Num++;
+				}
 			}
+
+		} catch (NullPointerException e) {
+
+			Messages.printFileException();
+			System.exit(0);
+
 		}
 
 		return Num;
 
 	}
 
-	/**Retrieve the table with flight's data BMP title,latitude and longitude coordinates 
+	/**
+	 * Retrieve the table with flight's data BMP title,latitude and longitude
+	 * coordinates
 	 * 
-	 * @param path path to flight data log file
-	 * @param num number of images taken from drone
+	 * @param path
+	 *            path to flight data log file
+	 * @param num
+	 *            number of images taken from drone
 	 * 
-	 * @return The table with flight data 
+	 * @return The table with flight data
 	 */
 	public static String[][] dataLogInput(String path, int num) {
 
@@ -98,11 +114,14 @@ public class InputMethods {
 
 	}
 
-	/**reader used as driver for Image data
+	/**
+	 * reader used as driver for Image data
 	 * 
-	 * @param path file path
+	 * @param path
+	 *            file path
 	 * 
-	 * @throws IOException file IO exception
+	 * @throws IOException
+	 *             file IO exception
 	 */
 	public static void readImageDataexp(String path) throws IOException {
 
@@ -153,11 +172,13 @@ public class InputMethods {
 		return;
 	}
 
-	
-	/**Converts bytes array to string 
+	/**
+	 * Converts bytes array to string
 	 * 
-	 * @param data byte array reader 
-	 * @param len array length
+	 * @param data
+	 *            byte array reader
+	 * @param len
+	 *            array length
 	 * 
 	 * @return the converted string
 	 */
@@ -180,11 +201,14 @@ public class InputMethods {
 		return convertion;
 	}
 
-	/**Reversion of the string 
+	/**
+	 * Reversion of the string
 	 * 
-	 * @param data String with data
+	 * @param data
+	 *            String with data
 	 * 
-	 * @param len length of string
+	 * @param len
+	 *            length of string
 	 * 
 	 * @return the converted string
 	 */
@@ -202,13 +226,13 @@ public class InputMethods {
 
 		if (len == 3) {
 
-			convertion= temp[2] + temp[1] + temp[0];
+			convertion = temp[2] + temp[1] + temp[0];
 
 		}
 
 		if (len == 4) {
 
-			convertion = temp[3]+temp[2]+temp[1]+temp[0];
+			convertion = temp[3] + temp[2] + temp[1] + temp[0];
 
 		}
 
@@ -217,29 +241,34 @@ public class InputMethods {
 
 	}
 
-	/**Convert hexadecimal string to decimal string
+	/**
+	 * Convert hexadecimal string to decimal string
 	 * 
-	 * @param hexstring the hex String
+	 * @param hexstring
+	 *            the hex String
 	 * 
 	 * @return the converted decimal string
 	 */
 	public static int convertHEX2DEC(String hexstring) {
 
 		int convertion = 0;
-	    convertion = Integer.parseUnsignedInt(hexstring,16);
-        
-	    System.out.println(convertion);
+		convertion = Integer.parseUnsignedInt(hexstring, 16);
+
+		System.out.println(convertion);
 		return convertion;
 
 	}
 
-	/**Image data reader
+	/**
+	 * Image data reader
 	 * 
-	 * @param path file path
+	 * @param path
+	 *            file path
 	 * 
 	 * @return returns the image object
 	 * 
-	 * @throws IOException File IO exception
+	 * @throws IOException
+	 *             File IO exception
 	 */
 	public static ImgRGB24 readImageData(String path) throws IOException {
 
@@ -390,11 +419,14 @@ public class InputMethods {
 
 	}
 
-	/**Main method for test drivers
+	/**
+	 * Main method for test drivers
 	 * 
-	 * @param args command line argument
+	 * @param args
+	 *            command line argument
 	 * 
-	 * @throws IOException File IO exception
+	 * @throws IOException
+	 *             File IO exception
 	 */
 	public static void main(String args[]) throws IOException {
 
@@ -408,14 +440,14 @@ public class InputMethods {
 			for (int j = 0; j < 3; j++)
 				System.out.println(flightBlackBox[i][j]);
 
-		//ImgRGB24 image = new ImgRGB24();
+		// ImgRGB24 image = new ImgRGB24();
 
-		//image = readImageData("./images/DJI_0707.txt");
-		//readImageDataexp("./images/DJI_0707.txt");
+		// image = readImageData("./images/DJI_0707.txt");
+		// readImageDataexp("./images/DJI_0707.txt");
 
-		//String temp1 = image.getHeight();
-		//String temp2 = reverseString(temp1,4);
-		//int i = convertHEX2DEC(temp2);
-		
+		// String temp1 = image.getHeight();
+		// String temp2 = reverseString(temp1,4);
+		// int i = convertHEX2DEC(temp2);
+
 	}
 }
