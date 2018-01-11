@@ -1,5 +1,8 @@
 package mapping;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 /**
  * @author NXATZ
  *
@@ -42,10 +45,26 @@ public class MapAlgorythm {
 		// PHASE 1.2 : Create BlackBoxarray
 
 		String[][] flightBlackBox = new String[GlobalVar.numberOfImages][GlobalVar.FBBAlength];
+		flightBlackBox = InputMethods.dataLogInput("data.txt", GlobalVar.numberOfImages);
+
+		if (GlobalVar.DEBUGFLAG.equals("-P")) {
+
+			if (flightBlackBox != null) {
+
+				Messages.succeedPhase1_2();
+			} else {
+
+				Messages.failedPhase1_2();
+			}
+
+			Messages.retvalPhase1_2(flightBlackBox);
+		}
 
 		// PHASE 1.3 : bitmap to text
 
 		for (int i = 0; i < GlobalVar.numberOfImages; i++) {
+			// ImageDecoding.getBMPfromJPG("./images" + "/" +
+			// flightBlackBox[i][GlobalVar.IMGFILENAME]);
 			ImageDecoding.getTXTfromBMP("./images" + "/" + flightBlackBox[i][GlobalVar.IMGFILENAME]);
 		}
 
@@ -54,9 +73,33 @@ public class MapAlgorythm {
 		// |----------------------|
 
 		// PHASE 2.1 : Image object
-
 		// PHASE 2.2 : Add data to Image object
 
+		ArrayList<ImgRGB24> ImageList = new ArrayList<ImgRGB24>();
+		
+		if (GlobalVar.DEBUGFLAG.equals("-P")) {
+			Messages.succeedPhase2_1();
+		}
+		
+		for (int i = 0; i < GlobalVar.numberOfImages; i++) {
+			System.gc();
+			ImgRGB24 image = new ImgRGB24();
+			try {
+				image.modifyImageTitle(flightBlackBox[GlobalVar.IMGFILENAME]);
+				image = InputMethods.readImageData("./images/DJI_0707.txt");
+				if (GlobalVar.DEBUGFLAG.equals("-P")) {
+					Messages.succeedPhase2_2(flightBlackBox[GlobalVar.IMGFILENAME]);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			ImageList.add(image);
+
+		}
+
+
+		// PHASE 2.2 : Add data to Image object
+		
 		// |----------------------|
 		// |PHASE 3: CORDINATION |
 		// |----------------------|

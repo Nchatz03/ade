@@ -38,7 +38,7 @@ public class InputMethods {
 
 		} catch (NullPointerException e) {
 
-			Messages.printFileException();
+			Messages.printFileNullPointerException();
 			System.exit(0);
 
 		}
@@ -86,7 +86,6 @@ public class InputMethods {
 				}
 
 				if (flag == true) {
-					System.out.println(line);
 					temp = line.split(" ");
 					flightBlackBox[counter][0] = temp[0];
 					flightBlackBox[counter][1] = temp[1];
@@ -94,7 +93,6 @@ public class InputMethods {
 					counter++;
 				}
 
-				System.out.println(line);
 				if (line.contains("LatLong")) {
 					flag = true;
 					continue;
@@ -104,10 +102,14 @@ public class InputMethods {
 
 			bufferedReader.close();
 		} catch (FileNotFoundException ex) {
-			System.out.println("Unable to open file '" + fileName + "'");
+			Messages.printFileNotFoundException();
 
-		} catch (IOException ex) {
-			System.out.println("Error reading file '" + fileName + "'");
+		} catch (IOException e) {
+			Messages.printFileIOException();
+			
+		} catch (ArrayIndexOutOfBoundsException es){
+			Messages.printArrayIndexOOB();
+			
 		}
 
 		return flightBlackBox;
@@ -186,19 +188,22 @@ public class InputMethods {
 
 		String convertion = null;
 
-		if (len == 2) {
-			convertion = String.format("%02X %02X", data[0], data[1]);
-		}
+
 
 		if (len == 3) {
-			convertion = String.format("%02X %02X %02X", data[0], data[1], data[2]);
-		}
+			return convertion = String.format("%02X %02X %02X", data[0], data[1], data[2]);
+		}else
 
 		if (len == 4) {
-			convertion = String.format("%02X %02X %02X %02X", data[0], data[1], data[2], data[3]);
-		}
+			return convertion = String.format("%02X %02X %02X %02X", data[0], data[1], data[2], data[3]);
+		}else
 
+		if (len == 2) {
+			return convertion = String.format("%02X %02X", data[0], data[1]);
+			
+		}
 		return convertion;
+		
 	}
 
 	/**
@@ -236,7 +241,6 @@ public class InputMethods {
 
 		}
 
-		System.out.println(convertion);
 		return convertion;
 
 	}
@@ -250,11 +254,9 @@ public class InputMethods {
 	 * @return the converted decimal string
 	 */
 	public static int convertHEX2DEC(String hexstring) {
+ 
+		int convertion = Integer.parseUnsignedInt(hexstring, 16);
 
-		int convertion = 0;
-		convertion = Integer.parseUnsignedInt(hexstring, 16);
-
-		System.out.println(convertion);
 		return convertion;
 
 	}
@@ -277,7 +279,6 @@ public class InputMethods {
 		ImgRGB24 image = new ImgRGB24();
 
 		byte headerdata[] = new byte[54];
-		byte pixeldata[] = new byte[9000];
 		int len = file.read(headerdata);
 		byte data2Byte[] = new byte[2];
 		byte data4Byte[] = new byte[4];
@@ -325,6 +326,9 @@ public class InputMethods {
 		data4Byte[3] = headerdata[21];
 
 		image.modifyWidth(convertByte2String(data4Byte, 4));
+		// get image width as integer
+		
+		GlobalVar.IMAGEWIDTH = convertHEX2DEC(reverseString(image.getWidth(), 4));
 
 		data4Byte[0] = headerdata[22];
 		data4Byte[1] = headerdata[23];
@@ -332,7 +336,9 @@ public class InputMethods {
 		data4Byte[3] = headerdata[25];
 
 		image.modifyHeight(convertByte2String(data4Byte, 4));
-
+		// get image height as integer
+		GlobalVar.IMAGEHEIGHT = convertHEX2DEC(reverseString(image.getHeight(), 4));
+		
 		data2Byte[0] = headerdata[26];
 		data2Byte[1] = headerdata[27];
 
@@ -384,15 +390,18 @@ public class InputMethods {
 		data4Byte[3] = headerdata[53];
 
 		image.modifyImportantColors(convertByte2String(data4Byte, 4));
+		System.gc();
 
-		String[][] tempimage = new String[4000][3000];
+		String[][] tempimage = new String[GlobalVar.IMAGEHEIGHT][GlobalVar.IMAGEWIDTH];
+		byte pixeldata[] = new byte[GlobalVar.IMAGEWIDTH * 3];
+
 
 		int row = 0;
 
 		do {
 
 			len = file.read(pixeldata);
-			int column = 2999;
+			int column = GlobalVar.IMAGEWIDTH -1;
 
 			for (int j = 0; j < len; j = j + 3) {
 				colorRGB[0] = pixeldata[j];
@@ -405,9 +414,9 @@ public class InputMethods {
 			}
 
 			row++;
-
 			System.out.println(row);
-			if (row == 4000)
+
+			if (row == GlobalVar.IMAGEHEIGHT)
 				break;
 
 		} while (len != -1);

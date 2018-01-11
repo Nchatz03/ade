@@ -5,6 +5,9 @@ package mapping;
  *
  */
 public class ImgRGB24 {
+	
+	/** Image title */
+	private String[] ImageTitle;
 
 	/////////////////// BMP HEADER////////////////////////
 
@@ -179,6 +182,15 @@ public class ImgRGB24 {
 		this.NumOfColorsPallete = NumOfColorsPallete;
 		this.ImportantColors = ImportantColors;
 	}
+	
+	/**ImageTitle setter
+	 * @param flightBlackBox  Image filename
+	 * 
+	 */
+	public void modifyImageTitle(String[] flightBlackBox) {
+
+		this.ImageTitle = flightBlackBox;
+	}
 
 	/**BMP Pixel array setter
 	 * 
@@ -341,6 +353,15 @@ public class ImgRGB24 {
 		return ColorArray;
 	}
 
+	/** ImageTitle getter
+	 * 
+	 * @return ImageTitle
+	 */
+	public String[] getImageTitle() {
+
+		return ImageTitle;
+	}
+	
 	/** Signature getter
 	 * 
 	 * @return Signature

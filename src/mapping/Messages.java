@@ -5,51 +5,169 @@ package mapping;
  *
  */
 public class Messages {
-	
+
 	/**
 	 * Message for NULL pointer File Exception
 	 */
-	public static void printFileException(){
-	System.out.println("|============================================|");
-	System.out.println("| InputMethods.getNumOfImages()  FAILED      |");
-	System.out.println("|--------------------------------------------|");
-	System.out.println("| REASON OF FAILURE: FILE NOT EXISTED        |");
-	System.out.println("|============================================|");
-	System.out.println();
+	public static void printFileNullPointerException() {
+		System.out.println("|=================================================|");
+		System.out.println("| FILE NULL POINTER EXCEPTION                     |");
+		System.out.println("|-------------------------------------------------|");
+		System.out.println("| REASON OF FAILURE: FILE DESTINATION NOT EXISTED |");
+		System.out.println("|=================================================|");
+		System.out.println("| PROGRAM UNEXPECTED TERMINATED                   |");
+		System.out.println("|=================================================|");
+		System.exit(0);
+		System.out.println();
 	}
 	
 	/**
+	 * 
+	 */
+	public static void printArrayIndexOOB() {
+		System.out.println("|============================================|");
+		System.out.println("| ARRAY INDEX OUT OF BOUNDS EXCEPTION        |");
+		System.out.println("|--------------------------------------------|");
+		System.out.println("| REASON OF FAILURE: NO BMPS IN DESTINATION  |");
+		System.out.println("|============================================|");
+		System.out.println("| PROGRAM UNEXPECTED TERMINATED              |");
+		System.out.println("|============================================|");
+		System.exit(0);
+		System.out.println();
+	}
+
+	/**
 	 * Message for succeed PHASE 1.1
 	 */
-	public static void succeedPhase1_1(){
+	public static void succeedPhase1_1() {
 		System.out.println("|============================================|");
 		System.out.println("| InputMethods.getNumOfImages()  SUCCEED     |");
 		System.out.println("|============================================|");
 		System.out.println();
-		
+
 	}
-	
+
 	/**
 	 * Message for failed PHASE 1.1
 	 */
-	public static void failedPhase1_1(){
+	public static void failedPhase1_1() {
 		System.out.println("|============================================|");
 		System.out.println("| InputMethods.getNumOfImages()  FAILED      |");
 		System.out.println("|--------------------------------------------|");
 		System.out.println("| REASON OF FAILURE: FILE EMPTY              |");
 		System.out.println("|============================================|");
 		System.out.println();
-		
+
 	}
-	
+
 	/**
 	 * Message for returning value of PHASE 1.1
 	 */
-	public static void retvalPhase1_1(){
+	public static void retvalPhase1_1() {
 		System.out.println("==============================================");
 		System.out.println("NUMBER OF IMAGES = " + GlobalVar.numberOfImages);
 		System.out.println("==============================================");
 		System.out.println();
+	}
+
+	/**
+	 * Message for file not found exception
+	 */
+	public static void printFileNotFoundException() {
+		System.out.println("|============================================|");
+		System.out.println("| FILE NOT FOUND EXCEPTION                   |");
+		System.out.println("|--------------------------------------------|");
+		System.out.println("| REASON OF FAILURE: FILE NOT OPEN           |");
+		System.out.println("|============================================|");
+		System.out.println("| PROGRAM UNEXPECTED TERMINATED              |");
+		System.out.println("|============================================|");
+		System.exit(0);
+		System.out.println();
+	}
+
+	/**
+	 * Message for file IO exception
+	 */
+	public static void printFileIOException() {
+		System.out.println("|============================================|");
+		System.out.println("| FILE INPUT OUTPUT EXCEPTION                |");
+		System.out.println("|--------------------------------------------|");
+		System.out.println("| REASON OF FAILURE: FILE IS NOT READABLE    |");
+		System.out.println("|============================================|");
+		System.out.println("| PROGRAM UNEXPECTED TERMINATED              |");
+		System.out.println("|============================================|");
+		System.exit(0);
+		System.out.println();
+	}
+
+	/**
+	 * Message for succeed PHASE 1.2
+	 */
+	public static void succeedPhase1_2() {
+		System.out.println("|============================================|");
+		System.out.println("| InputMethods.dataLogInput()   SUCCEED      |");
+		System.out.println("|============================================|");
+		System.out.println();
+
+	}
+
+	/**
+	 * Message for failed PHASE 1.2
+	 */
+	public static void failedPhase1_2() {
+		System.out.println("|============================================|");
+		System.out.println("| InputMethods.dataLogInput()   FAILED       |");
+		System.out.println("|--------------------------------------------|");
+		System.out.println("| REASON OF FAILURE: FILE NOT STRUCTURED WELL|");
+		System.out.println("|============================================|");
+		System.out.println();
+
+	}
+
+	/**
+	 * Message for returning value of PHASE 1.1
+	 * 
+	 * @param FBBox
+	 *            Table of FBBA
+	 * 
+	 */
+	public static void retvalPhase1_2(String[][] FBBox) {
+		System.out.println("|======================================================|");
+		System.out.println("|               FLIGHT BLACK BOX ARRAY                 |");
+		System.out.println("|=================|==================|=================|");
+		System.out.println("|  FBBA LATITUDE  |  FBBA LONGITUDE  |   IMAGE TITLE   |");
+		System.out.println("|=================|==================|=================|");
+		for (int i = 0; i < GlobalVar.numberOfImages; i++) {
+			int j = 0;
+			System.out.println("|" + FBBox[i][j] + "|" + FBBox[i][j + 1] + "|" + FBBox[i][j + 2] + "     |");
+		}
+
+		System.out.println("|======================================================|");
+		System.out.println();
+	}
+	
+	/**
+	 * Message for succeed PHASE 2.1
+	 */
+	public static void succeedPhase2_1() {
+		System.out.println("|============================================|");
+		System.out.println("| IMAGE LIST CREATION SUCCEED                |");
+		System.out.println("|============================================|");
+		System.out.println();
+
+	}
+
+
+	/**
+	 * Message for succeed PHASE 2.2
+	 * @param Filename image filename
+	 */
+	public static void succeedPhase2_2(String[] Filename) {
+		System.out.println("|============================================|");
+		System.out.println("| IMAGE: "+ Filename +" INSERTION SUCCEED    |");
+		System.out.println("|============================================|");
+		System.out.println();
+		
 	}
 
 }
