@@ -1,5 +1,7 @@
 package mapping;
 
+import java.io.File;
+
 /**
  * @author NXATZ
  *
@@ -20,7 +22,7 @@ public class Messages {
 		System.exit(0);
 		System.out.println();
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -125,13 +127,14 @@ public class Messages {
 	}
 
 	/**
-	 * Message for returning value of PHASE 1.1
+	 * Message for returning value of PHASE 1.2
 	 * 
-	 * @param FBBox
+	 * @param fbba
 	 *            Table of FBBA
 	 * 
+	 * 
 	 */
-	public static void retvalPhase1_2(String[][] FBBox) {
+	public static void retvalPhase1_2(BlackBox fbba) {
 		System.out.println("|======================================================|");
 		System.out.println("|               FLIGHT BLACK BOX ARRAY                 |");
 		System.out.println("|=================|==================|=================|");
@@ -139,13 +142,43 @@ public class Messages {
 		System.out.println("|=================|==================|=================|");
 		for (int i = 0; i < GlobalVar.numberOfImages; i++) {
 			int j = 0;
-			System.out.println("|" + FBBox[i][j] + "|" + FBBox[i][j + 1] + "|" + FBBox[i][j + 2] + "     |");
+			System.out.println("|" + fbba.getSpecifiedElement(i, j) + "|" + fbba.getSpecifiedElement(i, j + 1) + "|"
+					+ fbba.getSpecifiedElement(i, j + 2) + "     |");
 		}
 
 		System.out.println("|======================================================|");
 		System.out.println();
 	}
-	
+
+	/**
+	 * Message for succeed PHASE 1.3
+	 * 
+	 * @param oldfile
+	 *            old file name
+	 * @param newfile
+	 *            new file name
+	 */
+	public static void succeedPhase1_3(File oldfile, String newfile) {
+		System.out.println();
+		System.out.println("     FILE CONVERTION ==> CONVERT " + oldfile + " ==> " + newfile
+				+ "  ==>  CONVERTION SUCCEED");
+		System.out.println();
+		System.out.println();
+	}
+
+	/**
+	 * Message for succeed PHASE 1.3
+	 * 
+	 * @param oldfile
+	 *            old file name
+	 */
+	public static void failedPhase1_3(File oldfile) {
+		System.out.println();
+		System.out.println("FILE CONVERTION ==> CONVERT " + oldfile + " ==>  CONVERTION FAILED");
+		System.out.println();
+		System.out.println();
+	}
+
 	/**
 	 * Message for succeed PHASE 2.1
 	 */
@@ -157,17 +190,18 @@ public class Messages {
 
 	}
 
-
 	/**
 	 * Message for succeed PHASE 2.2
-	 * @param Filename image filename
+	 * 
+	 * @param Filename
+	 *            image filename
 	 */
 	public static void succeedPhase2_2(String[] Filename) {
 		System.out.println("|============================================|");
-		System.out.println("| IMAGE: "+ Filename +" INSERTION SUCCEED    |");
+		System.out.println("| IMAGE: " + Filename + " INSERTION SUCCEED    |");
 		System.out.println("|============================================|");
 		System.out.println();
-		
+
 	}
 
 }

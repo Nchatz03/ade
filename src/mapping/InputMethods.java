@@ -1,10 +1,7 @@
 package mapping;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 
 /**
@@ -34,6 +31,9 @@ public class InputMethods {
 				if (fileNames[i].contains(".bmp")) {
 					Num++;
 				}
+				if (fileNames[i].contains(".JPG")) {
+					Num++;
+				}
 			}
 
 		} catch (NullPointerException e) {
@@ -47,7 +47,7 @@ public class InputMethods {
 
 	}
 
-	/**
+/*	*//**
 	 * Retrieve the table with flight's data BMP title,latitude and longitude
 	 * coordinates
 	 * 
@@ -57,7 +57,7 @@ public class InputMethods {
 	 *            number of images taken from drone
 	 * 
 	 * @return The table with flight data
-	 */
+	 *//*
 	public static String[][] dataLogInput(String path, int num) {
 
 		// this is the filename of text file (static path)
@@ -114,7 +114,7 @@ public class InputMethods {
 
 		return flightBlackBox;
 
-	}
+	}*/
 
 	/**
 	 * reader used as driver for Image data
@@ -272,7 +272,7 @@ public class InputMethods {
 	 * @throws IOException
 	 *             File IO exception
 	 */
-	public static ImgRGB24 readImageData(String path) throws IOException {
+	public static  ImgRGB24 readImageData(String path) throws IOException {
 
 		FileInputStream file = new FileInputStream(path);
 
@@ -443,7 +443,7 @@ public class InputMethods {
 
 		String[][] flightBlackBox = new String[numofIMG][3];
 
-		flightBlackBox = dataLogInput("data.txt", numofIMG);
+		//flightBlackBox = dataLogInput("data.txt", numofIMG);
 
 		for (int i = 0; i < 6; i++)
 			for (int j = 0; j < 3; j++)

@@ -16,8 +16,9 @@ public class MapAlgorythm {
 	 * 
 	 * @param args
 	 *            command line arguments
+	 * @throws IOException exception
 	 */
-	public static void main(String args[]) {
+	public static void main(String args[]) throws IOException {
 
 		GlobalVar.PATH = args[0];
 		GlobalVar.DEBUGFLAG = args[1];
@@ -27,47 +28,12 @@ public class MapAlgorythm {
 		// |----------------------|
 
 		// PHASE 1.1 : Count the images
-
-		GlobalVar.numberOfImages = InputMethods.getNumofImages(GlobalVar.PATH);
-		if (GlobalVar.DEBUGFLAG.equals("-P")) {
-
-			if (GlobalVar.numberOfImages > 0) {
-
-				Messages.succeedPhase1_1();
-			} else {
-
-				Messages.failedPhase1_1();
-			}
-
-			Messages.retvalPhase1_1();
-		}
-
-		// PHASE 1.2 : Create BlackBoxarray
-
-		String[][] flightBlackBox = new String[GlobalVar.numberOfImages][GlobalVar.FBBAlength];
-		flightBlackBox = InputMethods.dataLogInput("data.txt", GlobalVar.numberOfImages);
-
-		if (GlobalVar.DEBUGFLAG.equals("-P")) {
-
-			if (flightBlackBox != null) {
-
-				Messages.succeedPhase1_2();
-			} else {
-
-				Messages.failedPhase1_2();
-			}
-
-			Messages.retvalPhase1_2(flightBlackBox);
-		}
-
+		// PHASE 1.2 : Create BlackBox
 		// PHASE 1.3 : bitmap to text
 
-		for (int i = 0; i < GlobalVar.numberOfImages; i++) {
-			// ImageDecoding.getBMPfromJPG("./images" + "/" +
-			// flightBlackBox[i][GlobalVar.IMGFILENAME]);
-			ImageDecoding.getTXTfromBMP("./images" + "/" + flightBlackBox[i][GlobalVar.IMGFILENAME]);
-		}
-
+		PhaseExecution.execPhase1();
+		System.exit(0);
+		
 		// |----------------------|
 		// |PHASE 2 : INPUT |
 		// |----------------------|
@@ -85,10 +51,11 @@ public class MapAlgorythm {
 			System.gc();
 			ImgRGB24 image = new ImgRGB24();
 			try {
-				image.modifyImageTitle(flightBlackBox[GlobalVar.IMGFILENAME]);
+			//	image.modifyImageTitle(flightBlackBox[GlobalVar.IMGFILENAME]);
+				
 				image = InputMethods.readImageData("./images/DJI_0707.txt");
 				if (GlobalVar.DEBUGFLAG.equals("-P")) {
-					Messages.succeedPhase2_2(flightBlackBox[GlobalVar.IMGFILENAME]);
+			//		Messages.succeedPhase2_2(flightBlackBox[GlobalVar.IMGFILENAME]);
 				}
 			} catch (IOException e) {
 				e.printStackTrace();

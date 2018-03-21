@@ -14,27 +14,31 @@ public class ImageDecoding {
 	 * 
 	 * @param path
 	 *            file path
+	 * @return String new filename
 	 */
-	public static void getTXTfromBMP(String path) {
+	public static String getTXTfromAny(String path) {
 
 		File oldfile = new File(path);
 		String filename = oldfile.getName();
-		String newfilename = "";
-		System.out.println(filename);
+		String newfile = "";
+		
 		for (int i = 0; i < filename.length(); i++) {
-			newfilename += filename.charAt(i);
+			newfile += filename.charAt(i);
 			if (filename.charAt(i) == '.') {
 				break;
 			}
 		}
-		newfilename += "txt";
-		System.out.println(newfilename);
-		File file2 = new File("./images/" + newfilename);
-		// Rename file (or directory)
+		newfile += "txt";
+		
+		File file2 = new File("./images/"+ newfile);
 		boolean success = oldfile.renameTo(file2);
 		if (!success) {
-			System.out.println("File was not successfully renamed");
+			Messages.failedPhase1_3(oldfile);
+		}else{
+			Messages.succeedPhase1_3(oldfile, newfile);
+			
 		}
+		return newfile;
 
 	}
 	
@@ -43,27 +47,31 @@ public class ImageDecoding {
 	 * 
 	 * @param path
 	 *            file path
+	 * @return the new filename
 	 */
-	public static void getJPGfromBMP(String path) {
+	public static String getJPGfromAny(String path) {
 
 		File oldfile = new File(path);
 		String filename = oldfile.getName();
-		String newfilename = "";
-		System.out.println(filename);
+		String newfile = "";
+		
 		for (int i = 0; i < filename.length(); i++) {
-			newfilename += filename.charAt(i);
+			newfile += filename.charAt(i);
 			if (filename.charAt(i) == '.') {
 				break;
 			}
 		}
-		newfilename += "JPG";
-		System.out.println(newfilename);
-		File file2 = new File("./images/" + newfilename);
-		// Rename file (or directory)
+		newfile += "JPG";
+		File file2 = new File( "./images/"+ newfile);
 		boolean success = oldfile.renameTo(file2);
 		if (!success) {
-			System.out.println("File was not successfully renamed");
+			Messages.failedPhase1_3(oldfile);
+			
+		}else{
+			Messages.succeedPhase1_3(oldfile, newfile);
+			
 		}
+		return newfile;
 
 	}
 
@@ -72,58 +80,34 @@ public class ImageDecoding {
 	 * 
 	 * @param path
 	 *            file path
+	 * @return the new filename
 	 */
-	public static void getBMPfromTXT(String path) {
+	public static String getBMPfromAny(String path) {
 
 		File oldfile = new File(path);
+		System.out.println(oldfile);
 		String filename = oldfile.getName();
-		String newfilename = "";
-		System.out.println(filename);
+		String newfile = "";
+		
 		for (int i = 0; i < filename.length(); i++) {
-			newfilename += filename.charAt(i);
+			newfile += filename.charAt(i);
 			if (filename.charAt(i) == '.') {
 				break;
 			}
 		}
-		newfilename += "bmp";
-		System.out.println(newfilename);
-		File file2 = new File("./images/" + newfilename);
-		// Rename file (or directory)
+		newfile += "bmp";
+		File file2 = new File("./images/"+ newfile);
 		boolean success = oldfile.renameTo(file2);
 		if (!success) {
-			System.out.println("File was not successfully renamed");
+			Messages.failedPhase1_3(oldfile);
+		}else{
+			Messages.succeedPhase1_3(oldfile, newfile);
+			
 		}
+		return newfile;
 
 	}
 	
-	/**
-	 * Converts JPG files to BMP files
-	 * 
-	 * @param path
-	 *            file path
-	 */
-	public static void getBMPfromJPG(String path) {
-
-		File oldfile = new File(path);
-		String filename = oldfile.getName();
-		String newfilename = "";
-		System.out.println(filename);
-		for (int i = 0; i < filename.length(); i++) {
-			newfilename += filename.charAt(i);
-			if (filename.charAt(i) == '.') {
-				break;
-			}
-		}
-		newfilename += "bmp";
-		System.out.println(newfilename);
-		File file2 = new File("./images/" + newfilename);
-		// Rename file (or directory)
-		boolean success = oldfile.renameTo(file2);
-		if (!success) {
-			System.out.println("File was not successfully renamed");
-		}
-
-	}
 
 	/**
 	 * Main method for method test files
@@ -136,38 +120,31 @@ public class ImageDecoding {
 	 */
 	public static void main(String args[]) throws IOException {
 		
-		/**JPG -> BMP **/
-//		getBMPfromJPG("./images/DJI_0707.txt");
-//		getBMPfromJPG("./images/DJI_0708.txt");
-//		getBMPfromJPG("./images/DJI_0709.txt");
-//		getBMPfromJPG("./images/DJI_0710.txt");
-//		getBMPfromJPG("./images/DJI_0711.txt");
-//		getBMPfromJPG("./images/DJI_0712.txt");
 
-        /**BMP -> TXT **/
+//        /**Any -> TXT **/
+//		
+//		getTXTfromAny("./images/DJI_0707.txt");
+//		getTXTfromAny("./images/DJI_0708.txt");
+//		getTXTfromAny("./images/DJI_0709.txt");
+//		getTXTfromAny("./images/DJI_0710.txt");
+//		getTXTfromAny("./images/DJI_0711.txt");
+//		getTXTfromAny("./images/DJI_0712.txt");
 		
-//		getTXTfromBMP("./images/DJI_0707.txt");
-//		getTXTfromBMP("./images/DJI_0708.txt");
-//		getTXTfromBMP("./images/DJI_0709.txt");
-//		getTXTfromBMP("./images/DJI_0710.txt");
-//		getTXTfromBMP("./images/DJI_0711.txt");
-//		getTXTfromBMP("./images/DJI_0712.txt");
+		/**Any -> BMP **/
+//		getBMPfromAny("./images/DJI_0707.JPG");
+//		getBMPfromAny("./images/DJI_0708.JPG");
+//		getBMPfromAny("./images/DJI_0709.JPG");
+//		getBMPfromAny("./images/DJI_0710.JPG");
+//		getBMPfromAny("./images/DJI_0711.JPG");
+//		getBMPfromAny("./images/DJI_0712.JPG");
 		
-		/**TXT -> BMP **/
-		getBMPfromTXT("./images/DJI_0707.txt");
-		getBMPfromTXT("./images/DJI_0708.txt");
-		getBMPfromTXT("./images/DJI_0709.txt");
-		getBMPfromTXT("./images/DJI_0710.txt");
-		getBMPfromTXT("./images/DJI_0711.txt");
-		getBMPfromTXT("./images/DJI_0712.txt");
-		
-		/**BMP -> JPG **/
-//		getJPGfromBMP("./images/DJI_0707.txt");
-//		getJPGfromBMP("./images/DJI_0708.txt");
-//		getJPGfromBMP("./images/DJI_0709.txt");
-//		getJPGfromBMP("./images/DJI_0710.txt");
-//		getJPGfromBMP("./images/DJI_0711.txt");
-//		getJPGfromBMP("./images/DJI_0712.txt");
+//		/**Any -> JPG **/
+		getJPGfromAny("./images/DJI_0707.txt");
+		getJPGfromAny("./images/DJI_0708.txt");
+		getJPGfromAny("./images/DJI_0709.txt");
+		getJPGfromAny("./images/DJI_0710.txt");
+		getJPGfromAny("./images/DJI_0711.txt");
+		getJPGfromAny("./images/DJI_0712.txt");
 
 	}
 }

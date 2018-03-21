@@ -16,37 +16,37 @@ public class GlobalVar {
 	/**
 	 * Length of Flight Black Box Array
 	 */
-	public static final int FBBAlength = 6;
+	public static final int BLACKBOX_LENGTH = 6;
 
 	/**
 	 * Image latitude
 	 */
-	public static final int FBBAlATITUDE = 0;
+	public static final int BLACKBOX_LATITUDE = 0;
 
 	/**
 	 * Image longitude
 	 */
-	public static final int FBBALONGITUDE = 1;
+	public static final int BLACKBOX_LONGITUDE = 1;
 
 	/**
 	 * Image File Name
 	 */
-	public static final int IMGFILENAME = 2;
+	public static final int BLACKBOX_FILENAME = 2;
 
 	/**
 	 * Image New Center y-axis
 	 */
-	public static final int FBBACENTER_YAXIS = 3;
+	public static final int BLACKBOX_CENTER_YAXIS = 3;
 
 	/**
 	 * Image New Center x-axis
 	 */
-	public static final int FBBACENTER_XAXIS = 4;
+	public static final int BLACKBOX_CENTER_XAXIS = 4;
 
 	/**
 	 * Image distance from intercept point
 	 */
-	public static final int FBBA_EEINTERCECTION_D = 4;
+	public static final int BLACKBOX_INTERCECT_DISTANCE = 5;
 
 	/**
 	 * Earth's radius in meters
