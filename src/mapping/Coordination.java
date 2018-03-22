@@ -66,7 +66,7 @@ public class Coordination {
 		for (int i = 0; i < GlobalVar.numberOfImages; i++) {
 
 			imglongitude = Double.parseDouble(fbba.getSpecifiedElement(i, GlobalVar.BLACKBOX_LONGITUDE));
-			imglatitude = Double.parseDouble(fbba.getSpecifiedElement(i, GlobalVar.BLACKBOX_LONGITUDE));
+			imglatitude = Double.parseDouble(fbba.getSpecifiedElement(i, GlobalVar.BLACKBOX_LATITUDE));
 
 			distance = point2pointDistance(GlobalVar.EE_INTERC_LONG, imglongitude, GlobalVar.EE_INTERC_LAT,
 					imglatitude);

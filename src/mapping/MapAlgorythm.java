@@ -16,7 +16,8 @@ public class MapAlgorythm {
 	 * 
 	 * @param args
 	 *            command line arguments
-	 * @throws IOException exception
+	 * @throws IOException
+	 *             exception
 	 */
 	public static void main(String args[]) throws IOException {
 
@@ -24,16 +25,12 @@ public class MapAlgorythm {
 		GlobalVar.DEBUGFLAG = args[1];
 
 		// |----------------------|
-		// |PHASE 1 : CONVERTION |
+		// | PHASE 1 : CONVERTION |
 		// |----------------------|
-
-		// PHASE 1.1 : Count the images
-		// PHASE 1.2 : Create BlackBox
-		// PHASE 1.3 : bitmap to text
 
 		PhaseExecution.execPhase1();
 		System.exit(0);
-		
+
 		// |----------------------|
 		// |PHASE 2 : INPUT |
 		// |----------------------|
@@ -41,43 +38,42 @@ public class MapAlgorythm {
 		// PHASE 2.1 : Image object
 		// PHASE 2.2 : Add data to Image object
 
-		ArrayList<ImgRGB24> ImageList = new ArrayList<ImgRGB24>();
-		
-		if (GlobalVar.DEBUGFLAG.equals("-P")) {
-			Messages.succeedPhase2_1();
-		}
-		
-		for (int i = 0; i < GlobalVar.numberOfImages; i++) {
-			System.gc();
-			ImgRGB24 image = new ImgRGB24();
-			try {
-			//	image.modifyImageTitle(flightBlackBox[GlobalVar.IMGFILENAME]);
-				
-				image = InputMethods.readImageData("./images/DJI_0707.txt");
-				if (GlobalVar.DEBUGFLAG.equals("-P")) {
-			//		Messages.succeedPhase2_2(flightBlackBox[GlobalVar.IMGFILENAME]);
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			ImageList.add(image);
-
-		}
-
+		// ArrayList<ImgRGB24> ImageList = new ArrayList<ImgRGB24>();
+		//
+		// if (GlobalVar.DEBUGFLAG.equals("-P")) {
+		// Messages.succeedPhase2_1();
+		// }
+		//
+		// for (int i = 0; i < GlobalVar.numberOfImages; i++) {
+		// System.gc();
+		// ImgRGB24 image = new ImgRGB24();
+		// try {
+		// // image.modifyImageTitle(flightBlackBox[GlobalVar.IMGFILENAME]);
+		//
+		// image = InputMethods.readImageData("./images/DJI_0707.txt");
+		// if (GlobalVar.DEBUGFLAG.equals("-P")) {
+		// // Messages.succeedPhase2_2(flightBlackBox[GlobalVar.IMGFILENAME]);
+		// }
+		// } catch (IOException e) {
+		// e.printStackTrace();
+		// }
+		// ImageList.add(image);
+		//
+		// }
 
 		// PHASE 2.2 : Add data to Image object
-		
+
 		// |----------------------|
-		// |PHASE 3: CORDINATION |
+		// | PHASE 2: CORDINATION |
 		// |----------------------|
 
-		// PHASE 3.1 : Calculate GPS distance
+		// PHASE 2.1 : Calculate GPS distance
 
-		// PHASE 3.2 : Image distance
+		// PHASE 2.2 : Image distance
 
-		// PHASE 3.3 : Create array with distance and centers
+		// PHASE 2.3 : Create array with distance and centers
 
-		// PHASE 3.4 : Canvas dimension calculation
+		// PHASE 2.4 : Canvas dimension calculation
 
 		// |----------------------|
 		// |PHASE 4: MAP |
