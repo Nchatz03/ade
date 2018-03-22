@@ -81,6 +81,33 @@ public class PhaseExecution {
 	}
 
 	/**
+	 * @param fbba
+	 *            array
+	 * 
+	 */
+	public static void execPhase6_1(BlackBox fbba) {
+		for (int i = 0; i < GlobalVar.numberOfImages; i++) {
+
+			@SuppressWarnings("unused")
+			String file = null;
+
+			if (fbba.getSpecifiedElement(i, GlobalVar.BLACKBOX_IMAGE_FORMAT) == "JPG") {
+				file = ImageDecoding
+						.getJPGfromAny("./images/" + fbba.getSpecifiedElement(i, GlobalVar.BLACKBOX_FILENAME));
+			}
+
+			if (fbba.getSpecifiedElement(i, GlobalVar.BLACKBOX_IMAGE_FORMAT) == "bmp") {
+				file = ImageDecoding
+						.getBMPfromAny("./images/" + fbba.getSpecifiedElement(i, GlobalVar.BLACKBOX_FILENAME));
+			}
+
+		}
+
+		Messages.retvalPhase1_2(fbba);
+
+	}
+
+	/**
 	 * @throws IOException
 	 *             exception
 	 * 
@@ -92,6 +119,8 @@ public class PhaseExecution {
 		fbba = execPhase1_2(fbba);
 		execPhase1_3(fbba);
 		execPhase1_4(fbba);
+		execPhase6_1(fbba);
 
 	}
+
 }

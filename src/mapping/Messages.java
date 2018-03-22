@@ -135,18 +135,25 @@ public class Messages {
 	 * 
 	 */
 	public static void retvalPhase1_2(BlackBox fbba) {
-		System.out.println("|======================================================|");
-		System.out.println("|               FLIGHT BLACK BOX ARRAY                 |");
-		System.out.println("|=================|==================|=================|");
-		System.out.println("|  FBBA LATITUDE  |  FBBA LONGITUDE  |   IMAGE TITLE   |");
-		System.out.println("|=================|==================|=================|");
+		System.out.println("|======================================================================================================================|");
+		System.out.println("|                                             FLIGHT BLACK BOX ARRAY                                                   |");
+		System.out.println("|============|====================|====================|====================|==========|==========|====================|");
+		System.out.println("| IMG FORMAT |   IMAGE TITLE      |    FBBA LATITUDE   |   FBBA LONGITUDE   |  X-AXIS  |  Y-AXIS  |       DISTANCE     |");
+		System.out.println("|============|====================|====================|====================|==========|==========|====================|");
 		for (int i = 0; i < GlobalVar.numberOfImages; i++) {
 			int j = 0;
-			System.out.println("|" + fbba.getSpecifiedElement(i, j) + "|" + fbba.getSpecifiedElement(i, j + 1) + "|"
-					+ fbba.getSpecifiedElement(i, j + 2) + "     |");
+			
+			System.out.printf("|%-12s|",fbba.getSpecifiedElement(i, j));
+			System.out.printf("%-20s|",fbba.getSpecifiedElement(i, j+1));
+			System.out.printf("%-20s|",fbba.getSpecifiedElement(i, j+2));
+			System.out.printf("%-20s|",fbba.getSpecifiedElement(i, j+3));
+			System.out.printf("%-10s|",fbba.getSpecifiedElement(i, j+4));
+			System.out.printf("%-10s|",fbba.getSpecifiedElement(i, j+5));
+			System.out.printf("%-20s|",fbba.getSpecifiedElement(i, j+6));
+			System.out.println();
 		}
 
-		System.out.println("|======================================================|");
+		System.out.println("|======================================================================================================================|");
 		System.out.println();
 	}
 

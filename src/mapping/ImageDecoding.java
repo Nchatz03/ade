@@ -85,7 +85,6 @@ public class ImageDecoding {
 	public static String getBMPfromAny(String path) {
 
 		File oldfile = new File(path);
-		System.out.println(oldfile);
 		String filename = oldfile.getName();
 		String newfile = "";
 		

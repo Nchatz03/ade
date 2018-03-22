@@ -57,21 +57,21 @@ public class BlackBox implements BlackBoxInterface {
 
 	public void BlackBoxReader(String path, int num) {
 
-		// this is the filename of text file (static path)
+		
 		String fileName = path;
 
 		boolean flag = false;
 		String[] temp;
 		int counter = 0;
 
-		// This will reference one line at a time
+		
 		String line = null;
 
 		try {
-			// FileReader reads text files in the default encoding.
+			
 			FileReader fileReader = new FileReader(fileName);
 
-			// Always wrap FileReader in BufferedReader.
+			
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 
 			while ((line = bufferedReader.readLine()) != null) {
@@ -82,9 +82,17 @@ public class BlackBox implements BlackBoxInterface {
 
 				if (flag == true) {
 					temp = line.split(" ");
-					this.BlackBoxArray[counter][0] = temp[0];
-					this.BlackBoxArray[counter][1] = temp[1];
-					this.BlackBoxArray[counter][2] = temp[2];
+					
+					this.BlackBoxArray[counter][2] = temp[0];
+					this.BlackBoxArray[counter][3] = temp[1];
+					this.BlackBoxArray[counter][1] = temp[2];
+					if (temp[2].contains("JPG")){
+						this.BlackBoxArray[counter][0] = "JPG";
+					}
+					if (temp[2].contains("bmp")){
+						this.BlackBoxArray[counter][0] = "bmp";
+					}
+					
 					counter++;
 				}
 
@@ -119,9 +127,10 @@ public class BlackBox implements BlackBoxInterface {
 	    for(int i =0; i< GlobalVar.numberOfImages; i++){
 	    	
 	    		printWriter.println("[");
+	    	    printWriter.println("INITFORMAT : "+fbba.getSpecifiedElement(i,GlobalVar.BLACKBOX_IMAGE_FORMAT));
+	    		printWriter.println("FILENAME : "+fbba.getSpecifiedElement(i,GlobalVar.BLACKBOX_FILENAME));
 	    	    printWriter.println("LATITUDE : "+fbba.getSpecifiedElement(i,GlobalVar.BLACKBOX_LATITUDE));
 	    	    printWriter.println("LONGITUDE : "+fbba.getSpecifiedElement(i,GlobalVar.BLACKBOX_LONGITUDE));
-	    	    printWriter.println("FILENAME : "+fbba.getSpecifiedElement(i,GlobalVar.BLACKBOX_FILENAME));
 	    	    printWriter.println("XAXIS : "+fbba.getSpecifiedElement(i,GlobalVar.BLACKBOX_CENTER_XAXIS));
 	    	    printWriter.println("YAXIS : "+fbba.getSpecifiedElement(i,GlobalVar.BLACKBOX_CENTER_YAXIS));
 	    	    printWriter.println("INTERCECT : "+fbba.getSpecifiedElement(i,GlobalVar.BLACKBOX_INTERCECT_DISTANCE));
