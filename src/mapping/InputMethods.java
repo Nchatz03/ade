@@ -259,7 +259,7 @@ public class InputMethods {
 		image.modifyWidth(convertByte2String(data4Byte, 4));
 		// get image width as integer
 		
-		GlobalVar.IMAGEWIDTH = convertHEX2DEC(reverseString(image.getWidth(), 4));
+		GlobalVar.setIMAGEWIDTH(convertHEX2DEC(reverseString(image.getWidth(), 4)));
 
 		data4Byte[0] = headerdata[22];
 		data4Byte[1] = headerdata[23];
@@ -268,7 +268,7 @@ public class InputMethods {
 
 		image.modifyHeight(convertByte2String(data4Byte, 4));
 		// get image height as integer
-		GlobalVar.IMAGEHEIGHT = convertHEX2DEC(reverseString(image.getHeight(), 4));
+		GlobalVar.setIMAGEHEIGHT(convertHEX2DEC(reverseString(image.getHeight(), 4)));
 		
 		data2Byte[0] = headerdata[26];
 		data2Byte[1] = headerdata[27];
@@ -323,8 +323,8 @@ public class InputMethods {
 		image.modifyImportantColors(convertByte2String(data4Byte, 4));
 		System.gc();
 
-		String[][] tempimage = new String[GlobalVar.IMAGEHEIGHT][GlobalVar.IMAGEWIDTH];
-		byte pixeldata[] = new byte[GlobalVar.IMAGEWIDTH * 3];
+		String[][] tempimage = new String[GlobalVar.getIMAGEHEIGHT()][GlobalVar.getIMAGEWIDTH()];
+		byte pixeldata[] = new byte[GlobalVar.getIMAGEWIDTH() * 3];
 
 
 		int row = 0;
@@ -332,7 +332,7 @@ public class InputMethods {
 		do {
 
 			len = file.read(pixeldata);
-			int column = GlobalVar.IMAGEWIDTH -1;
+			int column = GlobalVar.getIMAGEWIDTH() -1;
 
 			for (int j = 0; j < len; j = j + 3) {
 				colorRGB[0] = pixeldata[j];
@@ -345,9 +345,9 @@ public class InputMethods {
 			}
 
 			row++;
-			System.out.println(row);
+			//System.out.println(row);
 
-			if (row == GlobalVar.IMAGEHEIGHT)
+			if (row == GlobalVar.getIMAGEHEIGHT())
 				break;
 
 		} while (len != -1);

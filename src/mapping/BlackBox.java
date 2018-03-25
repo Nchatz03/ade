@@ -15,25 +15,19 @@ public class BlackBox implements BlackBoxInterface {
 
 	private String[][] BlackBoxArray;
 
-	/**
-	 * Default Constructor of Black Box
-	 * 
-	 */
-	public BlackBox() {
 
-	}
 
 	/**
 	 * Constructor of Black Box
-	 * 
+	 *
 	 * @param NumOfImages
 	 *            number of images
-	 * @param FBBAFileds
+	 * @param FAAFields
 	 *            number of BlackBox fields
 	 */
-	public BlackBox(int NumOfImages, int FBBAFileds) {
-
-		this.setBlackBox(new String[NumOfImages][FBBAFileds]);
+	BlackBox(int NumOfImages, int FAAFields) {
+		
+		this.setBlackBox(new String[NumOfImages][FAAFields]);
 
 	}
 
@@ -57,8 +51,6 @@ public class BlackBox implements BlackBoxInterface {
 
 	public void BlackBoxReader(String path, int num) {
 
-		
-		String fileName = path;
 
 		boolean flag = false;
 		String[] temp;
@@ -68,10 +60,10 @@ public class BlackBox implements BlackBoxInterface {
 		String line = null;
 
 		try {
-			
-			FileReader fileReader = new FileReader(fileName);
 
-			
+			FileReader fileReader = new FileReader(path);
+
+
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 
 			while ((line = bufferedReader.readLine()) != null) {
@@ -124,16 +116,16 @@ public class BlackBox implements BlackBoxInterface {
 	    PrintWriter printWriter = new PrintWriter(fileWriter);
 	    
 	    printWriter.println("{");
-	    for(int i =0; i< GlobalVar.numberOfImages; i++){
+	    for(int i = 0; i< GlobalVar.getNumberOfImages(); i++){
 	    	
 	    		printWriter.println("[");
-	    	    printWriter.println("INITFORMAT : "+fbba.getSpecifiedElement(i,GlobalVar.BLACKBOX_IMAGE_FORMAT));
-	    		printWriter.println("FILENAME : "+fbba.getSpecifiedElement(i,GlobalVar.BLACKBOX_FILENAME));
-	    	    printWriter.println("LATITUDE : "+fbba.getSpecifiedElement(i,GlobalVar.BLACKBOX_LATITUDE));
-	    	    printWriter.println("LONGITUDE : "+fbba.getSpecifiedElement(i,GlobalVar.BLACKBOX_LONGITUDE));
-	    	    printWriter.println("XAXIS : "+fbba.getSpecifiedElement(i,GlobalVar.BLACKBOX_CENTER_XAXIS));
-	    	    printWriter.println("YAXIS : "+fbba.getSpecifiedElement(i,GlobalVar.BLACKBOX_CENTER_YAXIS));
-	    	    printWriter.println("INTERCECT : "+fbba.getSpecifiedElement(i,GlobalVar.BLACKBOX_INTERCECT_DISTANCE));
+	    	    printWriter.println("INITFORMAT : "+fbba.getSpecifiedElement(i, GlobalVar.getBlackboxImageFormat()));
+	    		printWriter.println("FILENAME : "+fbba.getSpecifiedElement(i, GlobalVar.getBlackboxFilename()));
+	    	    printWriter.println("LATITUDE : "+fbba.getSpecifiedElement(i, GlobalVar.getBlackboxLatitude()));
+	    	    printWriter.println("LONGITUDE : "+fbba.getSpecifiedElement(i, GlobalVar.getBlackboxLongitude()));
+	    	    printWriter.println("XAXIS : "+fbba.getSpecifiedElement(i, GlobalVar.getBlackboxCenterXaxis()));
+	    	    printWriter.println("YAXIS : "+fbba.getSpecifiedElement(i, GlobalVar.getBlackboxCenterYaxis()));
+	    	    printWriter.println("INTERCECT : "+fbba.getSpecifiedElement(i, GlobalVar.getBlackboxIntercectDistance()));
 	    	    printWriter.println("]");
 	    	    
 	    }

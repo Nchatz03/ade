@@ -31,7 +31,7 @@ public class Coordination {
 	 */
 	public static double point2pointDistance(double lon1, double lon2, double lat1, double lat2) {
 
-		int R = GlobalVar.EARTH_RADIUS;
+		int R = GlobalVar.getEarthRadius();
 		double f1 = Math.toRadians(lat1);
 		double f2 = Math.toRadians(lat2);
 		double DF = Math.toRadians(lat2 - lat1);
@@ -63,74 +63,74 @@ public class Coordination {
 		double imglatitude = 0.0;
 		double imglongitude = 0.0;
 
-		for (int i = 0; i < GlobalVar.numberOfImages; i++) {
+		for (int i = 0; i < GlobalVar.getNumberOfImages(); i++) {
 
-			imglongitude = Double.parseDouble(fbba.getSpecifiedElement(i, GlobalVar.BLACKBOX_LONGITUDE));
-			imglatitude = Double.parseDouble(fbba.getSpecifiedElement(i, GlobalVar.BLACKBOX_LATITUDE));
+			imglongitude = Double.parseDouble(fbba.getSpecifiedElement(i, GlobalVar.getBlackboxLongitude()));
+			imglatitude = Double.parseDouble(fbba.getSpecifiedElement(i, GlobalVar.getBlackboxLatitude()));
 
-			distance = point2pointDistance(GlobalVar.EE_INTERC_LONG, imglongitude, GlobalVar.EE_INTERC_LAT,
+			distance = point2pointDistance(GlobalVar.getEeIntercLong(), imglongitude, GlobalVar.getEeIntercLat(),
 					imglatitude);
 
-			fbba.setSpecifiedElement(String.format("%.20", distance), i, GlobalVar.BLACKBOX_INTERCECT_DISTANCE);
+			fbba.setSpecifiedElement(String.format("%.20", distance), i, GlobalVar.getBlackboxIntercectDistance());
 
 		}
 
-		String[] swaparray = new String[GlobalVar.BLACKBOX_LENGTH];
+		String[] swaparray = new String[GlobalVar.getBlackboxLength()];
 		double compare1 = 0.0;
 		double compare2 = 0.0;
 
-		for (int i = 0; i < GlobalVar.numberOfImages; i++) {
-			for (int j = 1; j < (GlobalVar.numberOfImages - i); j++) {
+		for (int i = 0; i < GlobalVar.getNumberOfImages(); i++) {
+			for (int j = 1; j < (GlobalVar.getNumberOfImages() - i); j++) {
 
-				compare1 = Double.parseDouble(fbba.getSpecifiedElement(j - 1, GlobalVar.BLACKBOX_INTERCECT_DISTANCE));
-				compare2 = Double.parseDouble(fbba.getSpecifiedElement(j, GlobalVar.BLACKBOX_INTERCECT_DISTANCE));
+				compare1 = Double.parseDouble(fbba.getSpecifiedElement(j - 1, GlobalVar.getBlackboxIntercectDistance()));
+				compare2 = Double.parseDouble(fbba.getSpecifiedElement(j, GlobalVar.getBlackboxIntercectDistance()));
 
 				if (compare1 > compare2) {
 
 					// temp = arr[j-1];
-					swaparray[GlobalVar.BLACKBOX_IMAGE_FORMAT] = fbba.getSpecifiedElement(j - 1,
-							GlobalVar.BLACKBOX_IMAGE_FORMAT);
-					swaparray[GlobalVar.BLACKBOX_FILENAME] = fbba.getSpecifiedElement(j - 1,
-							GlobalVar.BLACKBOX_FILENAME);
-					swaparray[GlobalVar.BLACKBOX_LATITUDE] = fbba.getSpecifiedElement(j - 1,
-							GlobalVar.BLACKBOX_LATITUDE);
-					swaparray[GlobalVar.BLACKBOX_LONGITUDE] = fbba.getSpecifiedElement(j - 1,
-							GlobalVar.BLACKBOX_LONGITUDE);
-					swaparray[GlobalVar.BLACKBOX_CENTER_XAXIS] = fbba.getSpecifiedElement(j - 1,
-							GlobalVar.BLACKBOX_CENTER_XAXIS);
-					swaparray[GlobalVar.BLACKBOX_CENTER_YAXIS] = fbba.getSpecifiedElement(j - 1,
-							GlobalVar.BLACKBOX_CENTER_YAXIS);
-					swaparray[GlobalVar.BLACKBOX_INTERCECT_DISTANCE] = fbba.getSpecifiedElement(j - 1,
-							GlobalVar.BLACKBOX_INTERCECT_DISTANCE);
+					swaparray[GlobalVar.getBlackboxImageFormat()] = fbba.getSpecifiedElement(j - 1,
+							GlobalVar.getBlackboxImageFormat());
+					swaparray[GlobalVar.getBlackboxFilename()] = fbba.getSpecifiedElement(j - 1,
+							GlobalVar.getBlackboxFilename());
+					swaparray[GlobalVar.getBlackboxLatitude()] = fbba.getSpecifiedElement(j - 1,
+							GlobalVar.getBlackboxLatitude());
+					swaparray[GlobalVar.getBlackboxLongitude()] = fbba.getSpecifiedElement(j - 1,
+							GlobalVar.getBlackboxLongitude());
+					swaparray[GlobalVar.getBlackboxCenterXaxis()] = fbba.getSpecifiedElement(j - 1,
+							GlobalVar.getBlackboxCenterXaxis());
+					swaparray[GlobalVar.getBlackboxCenterYaxis()] = fbba.getSpecifiedElement(j - 1,
+							GlobalVar.getBlackboxCenterYaxis());
+					swaparray[GlobalVar.getBlackboxIntercectDistance()] = fbba.getSpecifiedElement(j - 1,
+							GlobalVar.getBlackboxIntercectDistance());
 
 					// arr[j-1] = arr[j];
-					fbba.setSpecifiedElement(fbba.getSpecifiedElement(j, GlobalVar.BLACKBOX_IMAGE_FORMAT), j - 1,
-							GlobalVar.BLACKBOX_IMAGE_FORMAT);
-					fbba.setSpecifiedElement(fbba.getSpecifiedElement(j, GlobalVar.BLACKBOX_FILENAME), j - 1,
-							GlobalVar.BLACKBOX_FILENAME);
-					fbba.setSpecifiedElement(fbba.getSpecifiedElement(j, GlobalVar.BLACKBOX_LATITUDE), j - 1,
-							GlobalVar.BLACKBOX_LATITUDE);
-					fbba.setSpecifiedElement(fbba.getSpecifiedElement(j, GlobalVar.BLACKBOX_LONGITUDE), j - 1,
-							GlobalVar.BLACKBOX_LONGITUDE);
-					fbba.setSpecifiedElement(fbba.getSpecifiedElement(j, GlobalVar.BLACKBOX_CENTER_XAXIS), j - 1,
-							GlobalVar.BLACKBOX_CENTER_XAXIS);
-					fbba.setSpecifiedElement(fbba.getSpecifiedElement(j, GlobalVar.BLACKBOX_CENTER_YAXIS), j - 1,
-							GlobalVar.BLACKBOX_CENTER_YAXIS);
-					fbba.setSpecifiedElement(fbba.getSpecifiedElement(j, GlobalVar.BLACKBOX_INTERCECT_DISTANCE), j - 1,
-							GlobalVar.BLACKBOX_INTERCECT_DISTANCE);
+					fbba.setSpecifiedElement(fbba.getSpecifiedElement(j, GlobalVar.getBlackboxImageFormat()), j - 1,
+							GlobalVar.getBlackboxImageFormat());
+					fbba.setSpecifiedElement(fbba.getSpecifiedElement(j, GlobalVar.getBlackboxFilename()), j - 1,
+							GlobalVar.getBlackboxFilename());
+					fbba.setSpecifiedElement(fbba.getSpecifiedElement(j, GlobalVar.getBlackboxLatitude()), j - 1,
+							GlobalVar.getBlackboxLatitude());
+					fbba.setSpecifiedElement(fbba.getSpecifiedElement(j, GlobalVar.getBlackboxLongitude()), j - 1,
+							GlobalVar.getBlackboxLongitude());
+					fbba.setSpecifiedElement(fbba.getSpecifiedElement(j, GlobalVar.getBlackboxCenterXaxis()), j - 1,
+							GlobalVar.getBlackboxCenterXaxis());
+					fbba.setSpecifiedElement(fbba.getSpecifiedElement(j, GlobalVar.getBlackboxCenterYaxis()), j - 1,
+							GlobalVar.getBlackboxCenterYaxis());
+					fbba.setSpecifiedElement(fbba.getSpecifiedElement(j, GlobalVar.getBlackboxIntercectDistance()), j - 1,
+							GlobalVar.getBlackboxIntercectDistance());
 
 					// arr[j] = temp;
-					fbba.setSpecifiedElement(swaparray[GlobalVar.BLACKBOX_IMAGE_FORMAT], j,
-							GlobalVar.BLACKBOX_IMAGE_FORMAT);
-					fbba.setSpecifiedElement(swaparray[GlobalVar.BLACKBOX_FILENAME], j, GlobalVar.BLACKBOX_FILENAME);
-					fbba.setSpecifiedElement(swaparray[GlobalVar.BLACKBOX_LATITUDE], j, GlobalVar.BLACKBOX_LATITUDE);
-					fbba.setSpecifiedElement(swaparray[GlobalVar.BLACKBOX_LONGITUDE], j, GlobalVar.BLACKBOX_LONGITUDE);
-					fbba.setSpecifiedElement(swaparray[GlobalVar.BLACKBOX_CENTER_XAXIS], j,
-							GlobalVar.BLACKBOX_CENTER_XAXIS);
-					fbba.setSpecifiedElement(swaparray[GlobalVar.BLACKBOX_CENTER_YAXIS], j,
-							GlobalVar.BLACKBOX_CENTER_YAXIS);
-					fbba.setSpecifiedElement(swaparray[GlobalVar.BLACKBOX_INTERCECT_DISTANCE], j,
-							GlobalVar.BLACKBOX_INTERCECT_DISTANCE);
+					fbba.setSpecifiedElement(swaparray[GlobalVar.getBlackboxImageFormat()], j,
+							GlobalVar.getBlackboxImageFormat());
+					fbba.setSpecifiedElement(swaparray[GlobalVar.getBlackboxFilename()], j, GlobalVar.getBlackboxFilename());
+					fbba.setSpecifiedElement(swaparray[GlobalVar.getBlackboxLatitude()], j, GlobalVar.getBlackboxLatitude());
+					fbba.setSpecifiedElement(swaparray[GlobalVar.getBlackboxLongitude()], j, GlobalVar.getBlackboxLongitude());
+					fbba.setSpecifiedElement(swaparray[GlobalVar.getBlackboxCenterXaxis()], j,
+							GlobalVar.getBlackboxCenterXaxis());
+					fbba.setSpecifiedElement(swaparray[GlobalVar.getBlackboxCenterYaxis()], j,
+							GlobalVar.getBlackboxCenterYaxis());
+					fbba.setSpecifiedElement(swaparray[GlobalVar.getBlackboxIntercectDistance()], j,
+							GlobalVar.getBlackboxIntercectDistance());
 				}
 
 			}
@@ -171,7 +171,7 @@ public class Coordination {
 	 */
 	public static void main(String args[]) {
 
-		double distance = point2pointDistance(GlobalVar.EE_INTERC_LONG, 33.40915679931637, GlobalVar.EE_INTERC_LAT,
+		double distance = point2pointDistance(GlobalVar.getEeIntercLong(), 33.40915679931637, GlobalVar.getEeIntercLat(),
 				35.14206867277194);
 
 		System.out.println(distance);

@@ -18,18 +18,19 @@ public class MapAlgorythm {
 	 *            command line arguments
 	 * @throws IOException
 	 *             exception
+	 * @throws InterruptedException  ok
 	 */
-	public static void main(String args[]) throws IOException {
+	public static void main(String args[]) throws IOException, InterruptedException {
 
-		GlobalVar.PATH = args[0];
-		GlobalVar.DEBUGFLAG = args[1];
+		GlobalVar.setPATH(args[0]);
+		GlobalVar.setDEBUGFLAG(args[1]);
 
 		// |----------------------|
 		// | PHASE 1 : CONVERTION |
 		// |----------------------|
 
 		PhaseExecution.execPhase1();
-		System.exit(0);
+		//System.exit(0);
 
 		// |----------------------|
 		// |PHASE 2 : INPUT |
@@ -38,28 +39,33 @@ public class MapAlgorythm {
 		// PHASE 2.1 : Image object
 		// PHASE 2.2 : Add data to Image object
 
-		// ArrayList<ImgRGB24> ImageList = new ArrayList<ImgRGB24>();
-		//
-		// if (GlobalVar.DEBUGFLAG.equals("-P")) {
-		// Messages.succeedPhase2_1();
-		// }
-		//
-		// for (int i = 0; i < GlobalVar.numberOfImages; i++) {
-		// System.gc();
-		// ImgRGB24 image = new ImgRGB24();
-		// try {
-		// // image.modifyImageTitle(flightBlackBox[GlobalVar.IMGFILENAME]);
-		//
-		// image = InputMethods.readImageData("./images/DJI_0707.txt");
-		// if (GlobalVar.DEBUGFLAG.equals("-P")) {
-		// // Messages.succeedPhase2_2(flightBlackBox[GlobalVar.IMGFILENAME]);
-		// }
-		// } catch (IOException e) {
-		// e.printStackTrace();
-		// }
-		// ImageList.add(image);
-		//
-		// }
+		ArrayList<ImgRGB24> ImageList = new ArrayList<ImgRGB24>();
+		
+		 if (GlobalVar.getDEBUGFLAG().equals("-P")) {
+		 Messages.succeedPhase2_1();
+		 }
+		
+		 for (int i = 0; i < GlobalVar.getNumberOfImages(); i++) {
+		 
+		 ImgRGB24 image = new ImgRGB24();
+		 System.out.println(i);
+		 System.gc();
+		 Thread.sleep(5000);
+		 System.out.println(i);
+		 
+		 try {
+		 // image.modifyImageTitle(flightBlackBox[GlobalVar.IMGFILENAME]);
+		
+		 image = InputMethods.readImageData("./images/DJI_0707.txt");
+		 if (GlobalVar.getDEBUGFLAG().equals("-P")) {
+		 // Messages.succeedPhase2_2(flightBlackBox[GlobalVar.IMGFILENAME]);
+		 }
+		 } catch (IOException e) {
+		 e.printStackTrace();
+		 }
+		 ImageList.add(image);
+		
+		 }
 
 		// PHASE 2.2 : Add data to Image object
 

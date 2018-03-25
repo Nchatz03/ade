@@ -13,10 +13,10 @@ public class PhaseExecution {
 	*/
 	public static void execPhase1_1() {
 
-		GlobalVar.numberOfImages = InputMethods.getNumofImages(GlobalVar.PATH);
-		if (GlobalVar.DEBUGFLAG.equals("-P")) {
+		GlobalVar.setNumberOfImages(InputMethods.getNumofImages(GlobalVar.getPATH()));
+		if (GlobalVar.getDEBUGFLAG().equals("-P")) {
 
-			if (GlobalVar.numberOfImages > 0) {
+			if (GlobalVar.getNumberOfImages() > 0) {
 
 				Messages.succeedPhase1_1();
 			} else {
@@ -37,9 +37,9 @@ public class PhaseExecution {
 	 */
 	public static BlackBox execPhase1_2(BlackBox fbba) {
 
-		fbba.BlackBoxReader("data.txt", GlobalVar.numberOfImages);
+		fbba.BlackBoxReader("data.txt", GlobalVar.getNumberOfImages());
 
-		if (GlobalVar.DEBUGFLAG.equals("-P")) {
+		if (GlobalVar.getDEBUGFLAG().equals("-P")) {
 
 			Messages.succeedPhase1_2();
 
@@ -55,14 +55,14 @@ public class PhaseExecution {
 	 */
 	public static void execPhase1_3(BlackBox fbba) {
 
-		for (int i = 0; i < GlobalVar.numberOfImages; i++) {
+		for (int i = 0; i < GlobalVar.getNumberOfImages(); i++) {
 
 			String file = null;
 
-			file = ImageDecoding.getBMPfromAny("./images/" + fbba.getSpecifiedElement(i, GlobalVar.BLACKBOX_FILENAME));
-			fbba.setSpecifiedElement(file, i, GlobalVar.BLACKBOX_FILENAME);
-			file = ImageDecoding.getTXTfromAny("./images/" + fbba.getSpecifiedElement(i, GlobalVar.BLACKBOX_FILENAME));
-			fbba.setSpecifiedElement(file, i, GlobalVar.BLACKBOX_FILENAME);
+			file = ImageDecoding.getBMPfromAny("./images/" + fbba.getSpecifiedElement(i, GlobalVar.getBlackboxFilename()));
+			fbba.setSpecifiedElement(file, i, GlobalVar.getBlackboxFilename());
+			file = ImageDecoding.getTXTfromAny("./images/" + fbba.getSpecifiedElement(i, GlobalVar.getBlackboxFilename()));
+			fbba.setSpecifiedElement(file, i, GlobalVar.getBlackboxFilename());
 		}
 
 		Messages.retvalPhase1_2(fbba);
@@ -98,19 +98,19 @@ public class PhaseExecution {
 	 * 
 	 */
 	public static void execPhase6_2(BlackBox fbba) {
-		for (int i = 0; i < GlobalVar.numberOfImages; i++) {
+		for (int i = 0; i < GlobalVar.getNumberOfImages(); i++) {
 
 			@SuppressWarnings("unused")
 			String file = null;
 
-			if (fbba.getSpecifiedElement(i, GlobalVar.BLACKBOX_IMAGE_FORMAT) == "JPG") {
+			if (fbba.getSpecifiedElement(i, GlobalVar.getBlackboxImageFormat()) == "JPG") {
 				file = ImageDecoding
-						.getJPGfromAny("./images/" + fbba.getSpecifiedElement(i, GlobalVar.BLACKBOX_FILENAME));
+						.getJPGfromAny("./images/" + fbba.getSpecifiedElement(i, GlobalVar.getBlackboxFilename()));
 			}
 
-			if (fbba.getSpecifiedElement(i, GlobalVar.BLACKBOX_IMAGE_FORMAT) == "bmp") {
+			if (fbba.getSpecifiedElement(i, GlobalVar.getBlackboxImageFormat()) == "bmp") {
 				file = ImageDecoding
-						.getBMPfromAny("./images/" + fbba.getSpecifiedElement(i, GlobalVar.BLACKBOX_FILENAME));
+						.getBMPfromAny("./images/" + fbba.getSpecifiedElement(i, GlobalVar.getBlackboxFilename()));
 			}
 
 		}
@@ -133,14 +133,14 @@ public class PhaseExecution {
 		execPhase1_1();
 		
 		// PHASE 1.2 : Create BlackBox
-		BlackBox fbba = new BlackBox(GlobalVar.numberOfImages, GlobalVar.BLACKBOX_LENGTH);
+		BlackBox fbba = new BlackBox(GlobalVar.getNumberOfImages(), GlobalVar.getBlackboxLength());
 		fbba = execPhase1_2(fbba);
 		
 		// PHASE 1.3 : bitmap to text
 		execPhase1_3(fbba);
 		
 		// PHASE 1 OUTPUT
-		execPhase1_Out(fbba);
+		//execPhase1_Out(fbba);
 		
 		
 		// PHASE 2.1 : Calculate GPS distance

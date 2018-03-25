@@ -67,7 +67,7 @@ public class Messages {
 	 */
 	public static void retvalPhase1_1() {
 		System.out.println("==============================================");
-		System.out.println("NUMBER OF IMAGES = " + GlobalVar.numberOfImages);
+		System.out.println("NUMBER OF IMAGES = " + GlobalVar.getNumberOfImages());
 		System.out.println("==============================================");
 		System.out.println();
 	}
@@ -140,7 +140,7 @@ public class Messages {
 		System.out.println("|============|====================|====================|====================|==========|==========|====================|");
 		System.out.println("| IMG FORMAT |   IMAGE TITLE      |    FBBA LATITUDE   |   FBBA LONGITUDE   |  X-AXIS  |  Y-AXIS  |       DISTANCE     |");
 		System.out.println("|============|====================|====================|====================|==========|==========|====================|");
-		for (int i = 0; i < GlobalVar.numberOfImages; i++) {
+		for (int i = 0; i < GlobalVar.getNumberOfImages(); i++) {
 			int j = 0;
 			
 			System.out.printf("|%-12s|",fbba.getSpecifiedElement(i, j));

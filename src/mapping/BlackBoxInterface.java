@@ -13,11 +13,11 @@ public interface BlackBoxInterface {
 	 * 
 	 * @return the blackBox
 	 */
-	public String[][] getBlackBox();
+	String[][] getBlackBox();
 
 	/**
 	 * Set update a new black box array
-	 * 
+	 *
 	 * @param blackBox
 	 *            the blackBox to set
 	 */
