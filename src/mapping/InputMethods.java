@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+import imgRGB24.ImgRGB24;
+
 /**
  * @author NXATZ
  *

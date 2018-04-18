@@ -8,7 +8,7 @@ public class GlobalVar {
 
 	//////////////// GLOBAL VARIABLES /////////////////////
 
-	private static int numberOfImages = 0;
+	private static int NUMBEROFIMAGES = 0;
 
 	private static final int BLACKBOX_LENGTH = 7;
 	
@@ -31,24 +31,40 @@ public class GlobalVar {
 	private static final double EE_INTERC_LAT = 0;
 	
 	private static final double EE_INTERC_LONG = 0;
+	
+	public static final String JUNITFLAG = "TEST";
+	
+	public static final String PHASE1FLAG = "P1";
+	
+	public static final String PHASE2FLAG = "P2";
+	
+	public static final String PHASE3FLAG = "P3";
+	
+	public static final String PHASE4FLAG = "P4";
+	
+	public static final String PHASE5FLAG = "P5";
+	
+	public static final String PHASE6FLAG = "P6";
 
-	private static String PATH = "";
+	public static String PATH = "";
 
-	private static String DEBUGFLAG = "";
+	public static String DEBUGFLAG = "";
+	
+	public static String EXECFLAG = "";
 
-	private static int IMAGEWIDTH = 0;
+	public static int IMAGEWIDTH = 0;
 
-	private static int IMAGEHEIGHT = 0;
+	public static int IMAGEHEIGHT = 0;
 
 	/**
 	 * number of Images in the directory path
 	 */
 	public static int getNumberOfImages() {
-		return numberOfImages;
+		return NUMBEROFIMAGES;
 	}
 
 	public static void setNumberOfImages(int numberOfImages) {
-		GlobalVar.numberOfImages = numberOfImages;
+		GlobalVar.NUMBEROFIMAGES = numberOfImages;
 	}
 
 	/**

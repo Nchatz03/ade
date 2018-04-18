@@ -2,6 +2,8 @@ package mapping;
 
 import java.io.IOException;
 
+import blackbox.BlackBox;
+
 /**
  * @author NXATZ
  *
@@ -59,9 +61,11 @@ public class PhaseExecution {
 
 			String file = null;
 
-			file = ImageDecoding.getBMPfromAny("./images/" + fbba.getSpecifiedElement(i, GlobalVar.getBlackboxFilename()));
+			file = ImageDecoding
+					.getBMPfromAny("./images/" + fbba.getSpecifiedElement(i, GlobalVar.getBlackboxFilename()));
 			fbba.setSpecifiedElement(file, i, GlobalVar.getBlackboxFilename());
-			file = ImageDecoding.getTXTfromAny("./images/" + fbba.getSpecifiedElement(i, GlobalVar.getBlackboxFilename()));
+			file = ImageDecoding
+					.getTXTfromAny("./images/" + fbba.getSpecifiedElement(i, GlobalVar.getBlackboxFilename()));
 			fbba.setSpecifiedElement(file, i, GlobalVar.getBlackboxFilename());
 		}
 
@@ -79,19 +83,21 @@ public class PhaseExecution {
 		fbba.BlackBoxFileWriter(fbba);
 
 	}
-	
-	
+
 	/**
-	 * @param fbba blackbox
+	 * @param fbba
+	 *            blackbox
 	 * @return fbba
 	 * 
 	 */
-	public static BlackBox execPhase2_1(BlackBox fbba){
-		
-		return fbba = Coordination.imageCenterSorting(fbba);
-		
+	public static BlackBox execPhase2_1(BlackBox fbba) {
+
+		fbba = Coordination.imageCenterSorting(fbba);
+
+		return fbba;
+
 	}
-	
+
 	/**
 	 * @param fbba
 	 *            array
@@ -120,78 +126,126 @@ public class PhaseExecution {
 	}
 
 	/**
+	 * @param fbba
+	 *            blackbox array
+	 * @return
 	 * @throws IOException
 	 *             exception
 	 * 
 	 */
-	public static void execPhase1() throws IOException {
-		
-		
+	public static BlackBox execPhase1(BlackBox fbba) throws IOException {
+
 		// PHASE 1 INPUT
-		
+
 		// PHASE 1.1 : Count the images
 		execPhase1_1();
-		
+
 		// PHASE 1.2 : Create BlackBox
-		BlackBox fbba = new BlackBox(GlobalVar.getNumberOfImages(), GlobalVar.getBlackboxLength());
 		fbba = execPhase1_2(fbba);
-		
+
 		// PHASE 1.3 : bitmap to text
 		execPhase1_3(fbba);
-		
+
+		return fbba;
+
 		// PHASE 1 OUTPUT
-		//execPhase1_Out(fbba);
-		
-		
+		// execPhase1_Out(fbba);
+
 		// PHASE 2.1 : Calculate GPS distance
 
 		// PHASE 2.2 : Image distance
 
 		// PHASE 2.3 : Canvas dimension calculation
-		
-		
-		// 
-		
-		
+
+		//
 
 	}
-	
+
 	/**
-	 * @param fbba array
+	 * @param fbba
+	 *            array
 	 * 
 	 */
-	public static void execPhase2(BlackBox fbba){
-		
-		
-		// PHASE 2.1 : Calculate GPS distance
-		
-		fbba = execPhase2_1(fbba);
+	public static BlackBox execPhase2(BlackBox fbba) {
 
-		// PHASE 2.2 : Image distance
-		
-		
+		// PHASE 2.1 : Calculate GPS distance from earth center and sort
 
-		// PHASE 2.4 : Canvas dimension calculation
-		
-		
+		return fbba = execPhase2_1(fbba);
+
 	}
-	
+
 	/**
+	 * @param fbba
+	 *            rfrf
+	 * @return rfrf
 	 * 
 	 */
-	public static void execPhase3(){
-		
+	public static BlackBox execPhase3(BlackBox fbba) {
+
+		// PHASE 3.1 read images
+
+		return fbba;
+
 	}
-	
+
+	public static BlackBox execPhase4(BlackBox fbba) {
+
+		// PHASE 4.1: Recalculate new image centers
+
+		// PHASE 4.2 : Canvas dimension calculation and creation
+
+		// PHASE 4.3 : Copy color pixels of images on canvas
+
+		// PHASE 4.4 : Minimize Map height
+
+		// PHASE 4.5 : Minimize Map width
+
+		// PHASE 4.6 : PREVENT PADDING
+
+		return fbba;
+
+	}
+
+	public static BlackBox execPhase5(BlackBox fbba) {
+
+		// PHASE 5.1 : Generate new Bitmap
+
+		// PHASE 5.2 : Add Canvas data to Bitmap
+
+		// PHASE 5.3 : Save Bitmap
+
+		return fbba;
+
+	}
+
 	/**
-	 * @param fbba array
+	 * @param fbba
+	 *            array
+	 * @return
 	 */
-	public static void execPhase6(BlackBox fbba){
-		
-		
+	public static BlackBox execPhase6(BlackBox fbba) {
+
 		// PHASE 6.2 : Recover BMP files
 		execPhase6_2(fbba);
-		
+		return fbba;
+
+	}
+
+	/**
+	 * @throws IOException
+	 *             Io exception
+	 */
+	public static void execAllPhases() throws IOException {
+
+		BlackBox fbba = new BlackBox(GlobalVar.getNumberOfImages(), GlobalVar.getBlackboxLength());
+
+		fbba = execPhase1(fbba);
+		fbba = execPhase2(fbba);
+		fbba = execPhase3(fbba);
+		fbba = execPhase4(fbba);
+		fbba = execPhase5(fbba);
+		fbba = execPhase6(fbba);
+
 	}
 
 }

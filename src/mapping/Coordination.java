@@ -1,5 +1,7 @@
 package mapping;
 
+import blackbox.BlackBox;
+
 /**
  * @author NXATZ
  *
@@ -46,7 +48,6 @@ public class Coordination {
 		return distance;
 
 	}
-
 	/**
 	 * This method is Responsible to sort the images to smallest latitude
 	 * smallest longitude in order to find the image nearest to the equinox and
@@ -82,7 +83,8 @@ public class Coordination {
 		for (int i = 0; i < GlobalVar.getNumberOfImages(); i++) {
 			for (int j = 1; j < (GlobalVar.getNumberOfImages() - i); j++) {
 
-				compare1 = Double.parseDouble(fbba.getSpecifiedElement(j - 1, GlobalVar.getBlackboxIntercectDistance()));
+				compare1 = Double
+						.parseDouble(fbba.getSpecifiedElement(j - 1, GlobalVar.getBlackboxIntercectDistance()));
 				compare2 = Double.parseDouble(fbba.getSpecifiedElement(j, GlobalVar.getBlackboxIntercectDistance()));
 
 				if (compare1 > compare2) {
@@ -116,15 +118,18 @@ public class Coordination {
 							GlobalVar.getBlackboxCenterXaxis());
 					fbba.setSpecifiedElement(fbba.getSpecifiedElement(j, GlobalVar.getBlackboxCenterYaxis()), j - 1,
 							GlobalVar.getBlackboxCenterYaxis());
-					fbba.setSpecifiedElement(fbba.getSpecifiedElement(j, GlobalVar.getBlackboxIntercectDistance()), j - 1,
-							GlobalVar.getBlackboxIntercectDistance());
+					fbba.setSpecifiedElement(fbba.getSpecifiedElement(j, GlobalVar.getBlackboxIntercectDistance()),
+							j - 1, GlobalVar.getBlackboxIntercectDistance());
 
 					// arr[j] = temp;
 					fbba.setSpecifiedElement(swaparray[GlobalVar.getBlackboxImageFormat()], j,
 							GlobalVar.getBlackboxImageFormat());
-					fbba.setSpecifiedElement(swaparray[GlobalVar.getBlackboxFilename()], j, GlobalVar.getBlackboxFilename());
-					fbba.setSpecifiedElement(swaparray[GlobalVar.getBlackboxLatitude()], j, GlobalVar.getBlackboxLatitude());
-					fbba.setSpecifiedElement(swaparray[GlobalVar.getBlackboxLongitude()], j, GlobalVar.getBlackboxLongitude());
+					fbba.setSpecifiedElement(swaparray[GlobalVar.getBlackboxFilename()], j,
+							GlobalVar.getBlackboxFilename());
+					fbba.setSpecifiedElement(swaparray[GlobalVar.getBlackboxLatitude()], j,
+							GlobalVar.getBlackboxLatitude());
+					fbba.setSpecifiedElement(swaparray[GlobalVar.getBlackboxLongitude()], j,
+							GlobalVar.getBlackboxLongitude());
 					fbba.setSpecifiedElement(swaparray[GlobalVar.getBlackboxCenterXaxis()], j,
 							GlobalVar.getBlackboxCenterXaxis());
 					fbba.setSpecifiedElement(swaparray[GlobalVar.getBlackboxCenterYaxis()], j,
@@ -171,11 +176,7 @@ public class Coordination {
 	 */
 	public static void main(String args[]) {
 
-		double distance = point2pointDistance(GlobalVar.getEeIntercLong(), 33.40915679931637, GlobalVar.getEeIntercLat(),
-				35.14206867277194);
 
-		System.out.println(distance);
 
 	}
-
 }

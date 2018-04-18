@@ -2,6 +2,8 @@ package mapping;
 
 import java.io.File;
 
+import blackbox.BlackBox;
+
 /**
  * @author NXATZ
  *
