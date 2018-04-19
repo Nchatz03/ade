@@ -19,7 +19,7 @@ public class TestJUnitBlackBox {
 	static {
 		System.out.println(
 				"=====================================================================================================");
-		System.out.println("INITIALLIZING TEST");
+		System.out.println("                     ****** BLACKBOX TEST INITIALLIZING******");
 		System.out.println(
 				"=====================================================================================================");
 		System.out.println(
