@@ -1,0 +1,4 @@
+imagetitle latitude longitude altitude xgimbal ygimbal dronetype xsensor ysensor focallen
+dronedata:
+DJI_test1.JPG 35.14326477050781 33.409156799316406 100 30 30 Drone 36 24 50
+DJI_test2.JPG 35.14206867277194 33.40915679931637 100 20 20 Drone 36 24 20

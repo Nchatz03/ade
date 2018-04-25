@@ -1,0 +1,13 @@
+DRONE FOOTPRINT REPORT
+{
+[
+TITLE : List2
+REAL_HEIGHT : 2.1 Meters
+REAL_WIDTH : 2.2 Meters
+]
+[
+TITLE : List1
+REAL_HEIGHT : 1.1 Meters
+REAL_WIDTH : 1.2 Meters
+]
+}
