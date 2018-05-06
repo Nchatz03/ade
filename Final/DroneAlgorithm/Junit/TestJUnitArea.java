@@ -120,7 +120,7 @@ public class TestJUnitArea {
 	}
 
 	/**
-	 * Test method for {@link Area#areaReport(java.util.LinkedList)}.
+	 * Test method for {@link Area#areaReport(java.util.LinkedList,String)}.
 	 */
 	@Test
 	public final void testAreaReport() {
@@ -139,7 +139,7 @@ public class TestJUnitArea {
 		testlist.addFirst(test2);
 		testlist.addFirst(test3);
 		try {
-			test1.areaReport(testlist);
+			test1.areaReport(testlist,"dronereporttest.txt");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

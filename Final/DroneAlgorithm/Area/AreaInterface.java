@@ -71,8 +71,9 @@ public interface AreaInterface {
 	/**Print in a file the report 
 	 * 
 	 * @param arealist area list
+	 * @param path the path to save
 	 * @throws IOException IO exception
 	 */
-	public void areaReport(LinkedList<Area> arealist) throws IOException;
+	public void areaReport(LinkedList<Area> arealist,String path) throws IOException;
 
 }

@@ -20,6 +20,7 @@ public class DroneImageAlgorithm {
 
 		String path = args[0];
 		PhaseExecution.PhaseExecutioner(path);
+		System.out.print("jkwdwdsks");
 		
 
 	}

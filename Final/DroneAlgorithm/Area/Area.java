@@ -87,9 +87,9 @@ public class Area implements AreaInterface {
 		this.imagetitle = imagetitle;
 	}
 
-	public void areaReport(LinkedList<Area> arealist) throws IOException {
+	public void areaReport(LinkedList<Area> arealist,String path) throws IOException {
 
-		FileWriter fileWriter = new FileWriter("DroneReport.txt");
+		FileWriter fileWriter = new FileWriter(path);
 		PrintWriter printWriter = new PrintWriter(fileWriter);
 		int counter = arealist.size();
 

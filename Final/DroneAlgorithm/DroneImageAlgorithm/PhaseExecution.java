@@ -51,6 +51,11 @@ public class PhaseExecution {
 	 * Info array
 	 */
 	private static double[][] infoarray = null;
+	
+	/**
+	 * Default file to save
+	 */
+	public static String defaultsave = "Dronedata.txt";
 
 	/**
 	 * Phase 1 executioner
@@ -63,10 +68,11 @@ public class PhaseExecution {
 	public static void Phase1_Executioner(String path) {
 
 		// Phase 1.1 : creating Drone Object
-
 		// Phase 1.2 : Get Images Specs
 		boolean flag = false;
 		String line = null;
+		
+	    System.out.println("edee");
 
 		try {
 
@@ -76,16 +82,19 @@ public class PhaseExecution {
 
 			while ((line = bufferedReader.readLine()) != null) {
 
+				
 				if (flag == true) {
 
 					Drone tempDrone = new Drone();
 					tempDrone = tempDrone.GetSpecs(line);
+					System.out.println("lat"+tempDrone.getLatitude());
 					dronelist.addLast(tempDrone);
 
 				}
 
 				if (line.contains("dronedata:")) {
 					flag = true;
+					System.out.println("hi");
 					continue;
 				}
 
@@ -93,11 +102,12 @@ public class PhaseExecution {
 
 			bufferedReader.close();
 		} catch (FileNotFoundException ex) {
-			// Messages.printFileNotFoundException();
+			System.out.println("error1");
+			//Messages.printFileNotFoundException();
 
 		} catch (IOException e) {
 			// Messages.printFileIOException();
-
+			System.out.println("error2");
 		} catch (ArrayIndexOutOfBoundsException es) {
 			// Messages.printArrayIndexOOB();
 
@@ -161,7 +171,7 @@ public class PhaseExecution {
 
 		Area temp = new Area();
 
-		temp.areaReport(arealist);
+		temp.areaReport(arealist,defaultsave);
 
 	}
 
@@ -179,6 +189,7 @@ public class PhaseExecution {
 	 */
 	public static LinkedList<Area> PhaseExecutioner(String path) {
 
+		System.out.println("dwd    "+path);
 		dronelist = new LinkedList<Drone>();
 		arealist = new LinkedList<Area>();
 		// PHASE 1: Drone Object creation
@@ -187,6 +198,10 @@ public class PhaseExecution {
 		// PHASE 2: Calculate Variables
 		infoarray = new double[imageCount][FIELDNUMBER];
 		Phase2_Executioner();
+		
+		if ( dronelist.isEmpty() == true){
+			System.out.println("dkedked");
+		}
 
 		// PHASE 3: Area Object Creation
 		try {

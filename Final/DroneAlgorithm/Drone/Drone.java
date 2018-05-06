@@ -235,7 +235,7 @@ public class Drone implements DroneInterface {
 
 	public Drone GetSpecs(String specs) {
 
-		StringTokenizer st = new StringTokenizer(specs, " ");
+		StringTokenizer st = new StringTokenizer(specs, ",");
 		Drone retval = new Drone();
 
 		retval.imagetitle = st.nextToken();
